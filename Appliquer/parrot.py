@@ -11,7 +11,7 @@ class Pet:
 
     @classmethod
     def legs_count(cls):
-        print("legz")
+        return cls.legs
 
 
 
@@ -32,10 +32,10 @@ class Parrot(Pet):
 
 
 
-# jack = Parrot("Jack")
-# print(Cat.cri)
-# jack.say_hi()
-# jack.legs_count()
-# Pet.legs_count()
+jack = Parrot("Jack")
+
+jack.say_hi()
+jack.legs_count()
+Pet.legs_count()
 print(Cat.legs_count())
 print(Parrot.legs_count())
