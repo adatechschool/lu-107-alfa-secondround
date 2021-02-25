@@ -17,6 +17,7 @@ class Pet:
 
 
 class Cat(Pet):
+    legs = 4
 	def __init__(self, name):
 		super().__init__("cat", "Meow", 4, "miaaa")
 
