@@ -44,24 +44,22 @@ def get_user(name: str) -> User:
 
 class Article:
     def __init__(self, author, title, text):
-        self.author = author
-        self.title = title
-        self.text = text
+        self.__author = author
+        self.__title = title
+        self.__text = text
 
-def display_article(article):
-    """
-    Affiche un article : son titre, son auteur, son texte
+    def get_title(self):
+        return self.__title
 
-    TODO: cette fonction prend un supposé objet "article" en paramètre pour en faire l'affichage.
-          Les concepts d'encapsulation et d'abstraction imposeraient une autre façon de faire.
-          À vous de corriger !
-    """
-    print("")
-    print("-" * 4 + article.title + "-" * 4)
-    print(f"Auteur : {article.author.name}")
-    print(f"\\n{article.text}\\n")
-    print("-" * (len(article.title) + 8))
-    print("")
+
+    def display_article(self):
+
+        print("")
+        print("-" * 4 + self.__title + "-" * 4)
+        print(f"Auteur : {self.__author.name}")
+        print(f"\n{self.__text}\n")
+        print("-" * (len(self.__title) + 8))
+        print("")
 
 def write_article():
     """
@@ -119,7 +117,7 @@ def list_articles(prompt, use_article_callback):
         print("--- Articles disponibles ---")
 
         for idx, article in enumerate(articles):
-            print(f"{idx + 1} -> {article.title}")
+            print(f"{idx + 1} -> {article.get_title()}")
 
         print(f"{len(articles) + 1} -> Retour")
 
@@ -140,7 +138,7 @@ def display_articles():
         return
 
     # Affiche les articles disponibles et affiche celui sélectionné
-    list_articles("Quel article veux-tu lire ?", lambda article: display_article(article))
+    list_articles("Quel article veux-tu lire ?", lambda article: article.display_article())
 
 def delete_article(article):
     articles.remove(article)
@@ -150,7 +148,7 @@ def delete_articles():
         return
 
     # Affiche les articles disponibles et supprime celui sélectionné
-    list_articles("Quel article veux-tu supprimer ?", lambda article: delete_article(article))
+    list_articles("Quel article veux-tu supprimer ?", lambda article: article.delete_article())
 
 ACTIONS = [
     {
