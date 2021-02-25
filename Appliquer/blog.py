@@ -8,26 +8,45 @@ articles = []
 ###############################################################################
 
 class User:
-    def __init__(self, name: str, permission):
+    def __init__(self, name: str):
         self.name = name
-        self.permission = permission
 
-    def can(self, permission) -> bool:
+
+    def can(self, permission: "Permission") -> bool:
         """ Un utilisateur "lambda" ne peut que lire du contenu """
         return True if permission == Permission.READ else False
 
+
+
 # TODO: Ajoute ici les autres classes nécessaires au programme
+class Admin(User):
+    def __init__(self, name):
+        self.name = name
+
+    def can(self, permission):
+        return True
+
+class Writer(User):
+    def __init_(self, name):
+        self.name = name
+
+    def can(self,permission):
+        return False if permission == Permission.DELETE else True
+
 
 def get_user(name: str) -> User:
-    """
-    :param name: Nom de l'utilisateur pour lequel renvoyer une instance `User`
-    :return: instance d'une classe `User` adaptée au niveau de droits de
-             l'utilisateur passé en paramètre
-    """
-    # TODO: Compléter cette fonction pour qu'elle renvoie une instance adaptée
-    #       au niveau de droits de l'utilisateur passé en paramètre, tel que
-    #       renseigné dans la variable USER plus bas
-    return User(name)
+    if name == "chloe":
+        return Admin(name)
+    if name == 'alya':
+        return Writer(name)
+    else :
+        return User(name)
+
+class Article:
+    def __init__(self, author, title, text):
+        self.author = author
+        self.title = title
+        self.text = text
 
 def display_article(article):
     """
@@ -58,6 +77,10 @@ def write_article():
 
     print("Quel est le contenu de l'article ?")
     text = input("> ")
+
+    articles.append(Article(author, title, text))
+    print("Ton article est en ligne !!")
+
 
     # TODO: créer un nouvel Article à partir des données collectées et l'ajouter à la variable `articles`
 
