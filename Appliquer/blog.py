@@ -8,10 +8,11 @@ articles = []
 ###############################################################################
 
 class User:
-    def __init__(self, name: str):
+    def __init__(self, name: str, permission):
         self.name = name
+        self.permission = permission
 
-    def can(self, permission: "Permission") -> bool:
+    def can(self, permission) -> bool:
         """ Un utilisateur "lambda" ne peut que lire du contenu """
         return True if permission == Permission.READ else False
 
